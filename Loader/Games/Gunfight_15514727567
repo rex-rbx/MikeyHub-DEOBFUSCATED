@@ -1,7 +1,13 @@
+local vu38 = game:GetService("Players").LocalPlayer
 local vu1 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local v2, v3 = pcall(function()
-	return loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScriptHub/MikeyHub-V2/main/Loader/MHExtras/MikeyHubData"))()
-end)
+local v3 = {
+    ["Version"] = "",
+    ["Owner"] = "",
+    ["Status"] = "",
+    ["TOS"] = "",
+    ["KeySystemDown"] = false,
+    ["NonSupportedExes"] = {}
+}
 local v4 = game.PlaceId
 local v5 = game:GetService("MarketplaceService"):GetProductInfo(v4)
 local vu6 = game:GetService("RbxAnalyticsService"):GetClientId()
@@ -15,23 +21,6 @@ local v13 = setmetatable({}, v12)
 vu9.CheckIfMikeyHubOwned = vu8
 local vu14 = true
 local vu15 = ""
-local function v22()
-	local v16 = loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScriptHub/MikeyHubInfo/main/BlacklistedPeople/BannedHWIDs/Main"))()
-	local v17 = vu7.Name
-	local v18, v19, v20 = pairs(v16)
-	while true do
-		local v21
-		v20, v21 = v18(v19, v20)
-		if v20 == nil then
-			break
-		end
-		if v20 == v17 or v21.PlayerHWID == vu6 then
-			vu15 = tostring(v21.BanReason)
-			return true
-		end
-	end
-	return false
-end
 local v23
 local v25 = (function(p24)
 	return p24:gsub("%b[]", ""):gsub("%b{}", ""):gsub("%b()", ""):match("^%s*(.-)%s*$")
@@ -43,7 +32,7 @@ local vu26 = vu1:CreateWindow({
 	Size = UDim2.fromOffset(580, 460),
 	Acrylic = getgenv().Blur or false,
 	Theme = getgenv().Theme or "Dark",
-	MinimizeKey = getgenv().MinizeKey or Enum.KeyCode.LeftAlt
+	MinimizeKey = Enum.KeyCode.RightShift
 })
 local v45 = {
 	Main = vu26:AddTab({
